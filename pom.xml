@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.app</groupId>
-    <artifactId>WeatherBot</artifactId>
+    <groupId>com.github.sbutnyakov</groupId>
+    <artifactId>weather-bot</artifactId>
     <version>0.0.1</version>
 
     <properties>
@@ -15,6 +15,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <telegram.bot.api.version>5.7.0</telegram.bot.api.version>
         <telegram.bots.version>5.7.1</telegram.bots.version>
+        <openweathermap.api.version>2.2.0</openweathermap.api.version>
+        <telegram.bots.extensions.version>5.7.1</telegram.bots.extensions.version>
     </properties>
 
     <dependencies>
@@ -27,6 +29,16 @@
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
             <version>${telegram.bots.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.prominence</groupId>
+            <artifactId>openweathermap-api</artifactId>
+            <version>${openweathermap.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.telegram</groupId>
+            <artifactId>telegrambotsextensions</artifactId>
+            <version>${telegram.bots.extensions.version}</version>
         </dependency>
     </dependencies>
 
