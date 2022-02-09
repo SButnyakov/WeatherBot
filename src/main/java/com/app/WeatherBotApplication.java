@@ -7,5 +7,6 @@ public class WeatherBotApplication {
         Bot WeatherBot = new Bot("BOT_NAME", "BOT_TOKEN");
         System.out.println("123");
         System.out.println("aboba");
+        System.out.println("fdasd");
     }
 }
