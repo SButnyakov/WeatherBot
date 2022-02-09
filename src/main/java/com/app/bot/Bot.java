@@ -1,4 +1,4 @@
-package com.app;
+package com.app.bot;
 
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
