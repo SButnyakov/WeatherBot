@@ -51,6 +51,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.aksingh</groupId>
+            <artifactId>owm-japis</artifactId>
+            <version>2.5.3.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
             <version>${telegram.bots.version}</version>
