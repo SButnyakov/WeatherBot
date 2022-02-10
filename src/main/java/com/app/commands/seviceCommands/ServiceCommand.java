@@ -1,4 +1,4 @@
-package com.app.commands;
+package com.app.commands.seviceCommands;
 
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
