@@ -1,10 +1,11 @@
 package com.app.commands.seviceCommands;
 
+import com.app.commands.Command;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
-public class StartCommand extends ServiceCommand {
+public class StartCommand extends Command {
 
     public StartCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);

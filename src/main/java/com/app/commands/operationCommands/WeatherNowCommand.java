@@ -1,5 +1,6 @@
 package com.app.commands.operationCommands;
 
+import com.app.commands.Command;
 import com.github.prominence.openweathermap.api.enums.Language;
 import com.github.prominence.openweathermap.api.enums.UnitSystem;
 import com.github.prominence.openweathermap.api.model.weather.Weather;
@@ -7,7 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
-public class WeatherNowCommand extends OperationCommand {
+public class WeatherNowCommand extends Command {
     /*
     final String weather = openWeatherClient
             .currentWeather()
