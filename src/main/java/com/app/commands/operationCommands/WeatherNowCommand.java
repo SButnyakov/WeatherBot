@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public class WeatherNowCommand extends OperationCommand {
-
+    /*
     final String weather = openWeatherClient
             .currentWeather()
             .single()
@@ -18,6 +18,7 @@ public class WeatherNowCommand extends OperationCommand {
             .retrieve()
             .asJava()
             .toString();
+     */
 
     public WeatherNowCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
@@ -28,6 +29,6 @@ public class WeatherNowCommand extends OperationCommand {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Погода сейчас: " + weather);
+                "Погода сейчас: ");
     }
 }
