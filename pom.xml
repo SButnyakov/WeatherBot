@@ -21,11 +21,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.pengrad</groupId>
-            <artifactId>java-telegram-bot-api</artifactId>
-            <version>${telegram.bot.api.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
             <version>${telegram.bots.version}</version>
@@ -40,6 +35,7 @@
             <artifactId>telegrambotsextensions</artifactId>
             <version>${telegram.bots.extensions.version}</version>
         </dependency>
+
     </dependencies>
 
 </project>
