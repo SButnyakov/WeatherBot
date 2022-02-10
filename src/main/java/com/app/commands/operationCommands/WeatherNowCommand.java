@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public class WeatherNowCommand extends Command {
-
+    /*
     final String weather = openWeatherClient
             .currentWeather()
             .single()
@@ -19,7 +19,7 @@ public class WeatherNowCommand extends Command {
             .retrieve()
             .asJava()
             .toString();
-
+    */
 
     public WeatherNowCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
