@@ -10,10 +10,7 @@ public class WeatherNowCommand extends OperationCommand {
     public WeatherNowCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
     }
-
-    Weather weather = new Weather();
-    weather.setLocation()
-
+    
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
         String userName = (user.getUserName() != null) ? user.getUserName() :
