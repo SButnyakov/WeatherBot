@@ -7,8 +7,8 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public abstract class Command extends BotCommand {
-    public static final String API_TOKEN = "db082d6b19ebbda556c7e2e01d9b36b5";
-    public final OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_TOKEN);
+    //public static final String API_TOKEN = "db082d6b19ebbda556c7e2e01d9b36b5";
+    //public final OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_TOKEN);
 
     public Command(String commandIdentifier, String description) {
         super(commandIdentifier, description);
