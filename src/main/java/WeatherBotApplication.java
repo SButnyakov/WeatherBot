@@ -1,5 +1,3 @@
-package com.app;
-
 import com.app.bot.Bot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;

@@ -11,7 +11,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.app.WeatherBotApplication</mainClass>
+                            <mainClass>WeatherBotApplication</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
