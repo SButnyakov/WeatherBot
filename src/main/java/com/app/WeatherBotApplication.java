@@ -12,7 +12,6 @@ public class WeatherBotApplication {
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             telegramBotsApi.registerBot(new Bot(BOT_NAME, BOT_TOKEN));
-            System.out.println("hello world");
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
