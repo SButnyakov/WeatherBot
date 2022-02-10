@@ -1,11 +1,15 @@
 package com.app.commands.operationCommands;
 
+import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 abstract class OperationCommand extends BotCommand {
+    private static final String API_TOKEN = "db082d6b19ebbda556c7e2e01d9b36b5";
+
+    final OpenWeatherMapClient openWeatherMapClient = new OpenWeatherMapClient(API_TOKEN);
 
     public OperationCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
