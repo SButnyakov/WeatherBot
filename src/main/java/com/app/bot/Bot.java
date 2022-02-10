@@ -21,7 +21,7 @@ public class Bot extends TelegramLongPollingCommandBot {
         this.BOT_TOKEN = botToken;
         register(new StartCommand("start", "Начало работы"));
         register(new HelpCommand("help", "Помощь"));
-        register(new WeatherNowCommand("wearthernow", "Погода сейчас"));
+        register(new WeatherNowCommand("now", "Погода сейчас"));
     }
 
     @Override
