@@ -1,17 +1,13 @@
 package com.app.bot;
 
-import com.app.commands.HelpCommand;
-import com.app.commands.StartCommand;
-import com.app.settings.Settings;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import com.app.commands.operationCommands.WeatherNowCommand;
+import com.app.commands.seviceCommands.HelpCommand;
+import com.app.commands.seviceCommands.StartCommand;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-import java.util.Map;
 
 public class Bot extends TelegramLongPollingCommandBot {
     private final String BOT_NAME;
@@ -25,6 +21,7 @@ public class Bot extends TelegramLongPollingCommandBot {
         this.BOT_TOKEN = botToken;
         register(new StartCommand("start", "Начало работы"));
         register(new HelpCommand("help", "Помощь"));
+        register(new WeatherNowCommand("now", "Погода сейчас"));
     }
 
     @Override

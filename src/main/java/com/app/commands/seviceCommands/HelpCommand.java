@@ -1,4 +1,4 @@
-package com.app.commands;
+package com.app.commands.seviceCommands;
 
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
