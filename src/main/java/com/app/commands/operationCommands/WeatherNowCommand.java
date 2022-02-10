@@ -12,7 +12,7 @@ public class WeatherNowCommand extends OperationCommand {
     final String weather = openWeatherClient
             .currentWeather()
             .single()
-            .byCityName("Saint-Petersburg")
+            .byCityName("Minsk")
             .language(Language.RUSSIAN)
             .unitSystem(UnitSystem.METRIC)
             .retrieve()
