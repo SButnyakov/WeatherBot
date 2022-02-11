@@ -5,6 +5,7 @@ import com.app.commands.operationCommands.WeatherNowCommand;
 import com.app.commands.seviceCommands.HelpCommand;
 import com.app.commands.seviceCommands.StartCommand;
 import com.app.settings.Settings;
+import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -17,6 +18,9 @@ import java.util.Map;
 public class Bot extends TelegramLongPollingCommandBot {
     private final String BOT_NAME;
     private final String BOT_TOKEN;
+
+    public static final String API_TOKEN = "db082d6b19ebbda556c7e2e01d9b36b5";
+    public static final OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_TOKEN);
 
     public static final Map<Long, Settings> settingsMap = new HashMap<>();
 
@@ -43,10 +47,12 @@ public class Bot extends TelegramLongPollingCommandBot {
     public void processNonCommandUpdate(Update update) {
         if (update.hasMessage()) {
             Message message = update.getMessage();
-            String chatId = message.getChatId().toString();
             String userName = message.getFrom().toString();
+            if (message.hasText()) {
+                String chatId = message.getChatId().toString();
+                String answer = NonCommand.nonCommandMessageExecute(message, chatId);
+            }
 
-            // String answer = NonCommand.setAnswer(message);
 
         }
 
@@ -54,7 +60,7 @@ public class Bot extends TelegramLongPollingCommandBot {
             Message message = update.getMessage();
             if (message.hasText()) {
                 SendMessage sendMessage = new SendMessage();
-                NonCommand nonCommand = new NonCommand(message);
+                //NonCommand nonCommand = new NonCommand(message);
 
                 sendMessage.setChatId(message.getChatId().toString());
                 sendMessage.setText(message.getText() + " <- Я повторил!"); // Тут должна быть инфа о погоде
