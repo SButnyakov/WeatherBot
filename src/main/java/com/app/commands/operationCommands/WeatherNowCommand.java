@@ -1,5 +1,6 @@
 package com.app.commands.operationCommands;
 
+import com.app.bot.Bot;
 import com.app.commands.Command;
 import com.github.prominence.openweathermap.api.enums.Language;
 import com.github.prominence.openweathermap.api.enums.UnitSystem;
@@ -9,6 +10,16 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public class WeatherNowCommand extends Command {
+    
+    final Weather weather = Bot.openWeatherClient
+            .currentWeather()
+            .single()
+            .byCityName("St. Petersburg")
+            .language(Language.RUSSIAN)
+            .unitSystem(UnitSystem.METRIC)
+            .retrieve()
+            .asJava();
+
 
     public WeatherNowCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
