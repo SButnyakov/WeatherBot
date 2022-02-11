@@ -10,8 +10,6 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public class WeatherNowCommand extends Command {
 
-<<<<<<< Updated upstream
-=======
     final Weather weather = openWeatherClient
             .currentWeather()
             .single()
@@ -22,7 +20,6 @@ public class WeatherNowCommand extends Command {
             .asJava();
 
 
->>>>>>> Stashed changes
     public WeatherNowCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
     }
@@ -32,10 +29,6 @@ public class WeatherNowCommand extends Command {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-<<<<<<< Updated upstream
                 "Введите город, в котором хотите узнать погоду :)");
-=======
-                "\ud83c\udfd9" + weather.getLocation().getName());
->>>>>>> Stashed changes
     }
 }

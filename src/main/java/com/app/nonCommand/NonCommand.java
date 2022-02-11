@@ -1,6 +1,5 @@
 package com.app.nonCommand;
 
-import com.app.commands.Command;
 import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
 import com.github.prominence.openweathermap.api.enums.Language;
 import com.github.prominence.openweathermap.api.enums.UnitSystem;
