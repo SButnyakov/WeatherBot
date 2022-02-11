@@ -18,7 +18,7 @@ public class Bot extends TelegramLongPollingCommandBot {
     private final String BOT_NAME;
     private final String BOT_TOKEN;
 
-    private final Map<Long, Settings> settingsMap = new HashMap<>();
+    public static final Map<Long, Settings> settingsMap = new HashMap<>();
 
     public Bot(String botName, String botToken) {
         super();
