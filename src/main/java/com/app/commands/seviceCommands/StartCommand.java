@@ -16,6 +16,6 @@ public class StartCommand extends Command {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Це /start");
+                "Привет! Напиши город, в котором ты хочешь узнать погоду!");
     }
 }
