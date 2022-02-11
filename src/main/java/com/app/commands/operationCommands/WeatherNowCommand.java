@@ -2,6 +2,7 @@ package com.app.commands.operationCommands;
 
 import com.app.bot.Bot;
 import com.app.commands.Command;
+import com.app.settings.Settings;
 import com.github.prominence.openweathermap.api.enums.Language;
 import com.github.prominence.openweathermap.api.enums.UnitSystem;
 import com.github.prominence.openweathermap.api.model.weather.Weather;
@@ -11,16 +12,6 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public class WeatherNowCommand extends Command {
 
-    final Weather weather = Bot.openWeatherClient
-            .currentWeather()
-            .single()
-            .byCityName("St. Petersburg")
-            .language(Language.RUSSIAN)
-            .unitSystem(UnitSystem.METRIC)
-            .retrieve()
-            .asJava();
-
-
     public WeatherNowCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
     }
@@ -29,7 +20,16 @@ public class WeatherNowCommand extends Command {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
+        Settings settings = Bot.settingsMap.get(chat.getId());
+        final Weather weather = Bot.openWeatherClient
+                .currentWeather()
+                .single()
+                .byCityName(settings.getCity())
+                .language(Language.RUSSIAN)
+                .unitSystem(UnitSystem.METRIC)
+                .retrieve()
+                .asJava();
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Введите город, в котором хотите узнать погоду :)");
+                weather.toString());
     }
 }

@@ -11,7 +11,7 @@ public abstract class SetCityNonCommand {
 
     public static String setCity(Settings settings, String city) {
         try {
-            Bot.openWeatherClient.currentWeather().single().byCityName(city).retrieve();
+            Bot.openWeatherClient.currentWeather().single().byCityName(city).retrieve().asJava();
             settings.setCity(city);
             settings.setWaitingForCity(false);
         } catch (NoDataFoundException e) {

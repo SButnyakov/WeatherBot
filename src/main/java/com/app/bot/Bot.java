@@ -48,12 +48,12 @@ public class Bot extends TelegramLongPollingCommandBot {
         if (update.hasMessage()) {
             Message message = update.getMessage();
             String userName = message.getFrom().toString();
-            String chatId = message.getChatId().toString();
+            Long chatId = message.getChatId();
             if (message.hasText()) {
                 String answer = NonCommand.nonCommandMessageExecute(message, chatId);
                 try {
                     SendMessage sendMessage = new SendMessage();
-                    sendMessage.setChatId(chatId);
+                    sendMessage.setChatId(chatId.toString());
                     sendMessage.setText(answer);
                     execute(sendMessage);
                 } catch (TelegramApiException e) {
