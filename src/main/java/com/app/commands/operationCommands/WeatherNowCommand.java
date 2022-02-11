@@ -10,17 +10,6 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public class WeatherNowCommand extends Command {
 
-    final String weather = openWeatherClient
-            .currentWeather()
-            .single()
-            .byCityName("St. Petersburg")
-            .language(Language.RUSSIAN)
-            .unitSystem(UnitSystem.METRIC)
-            .retrieve()
-            .asJava()
-            .toString();
-
-
     public WeatherNowCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
     }
@@ -30,6 +19,6 @@ public class WeatherNowCommand extends Command {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Погода сейчас: " + weather);
+                "Введите город, в котором хотите узнать погоду :)");
     }
 }
