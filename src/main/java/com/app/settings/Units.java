@@ -1,6 +1,13 @@
 package com.app.settings;
 
 public enum Units {
-    CELSIUS,
-    FAHRENHEIT
+    ;
+    enum Temperature {
+        CELSIUS,
+        FAHRENHEIT
+    }
+    enum Pressure {
+        MILLIMETERS,
+        INCHES
+    }
 }
