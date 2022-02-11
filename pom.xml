@@ -31,12 +31,27 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.app.WeatherBotApplication</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <groupId>com.app</groupId>
     <artifactId>weather-bot</artifactId>
-    <version>0.0.2</version>
+    <version>0.1.0</version>
 
     <properties>
         <java.version>16</java.version>
