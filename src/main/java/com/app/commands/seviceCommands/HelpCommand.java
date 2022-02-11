@@ -1,10 +1,11 @@
 package com.app.commands.seviceCommands;
 
+import com.app.commands.Command;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
-public class HelpCommand extends ServiceCommand {
+public class HelpCommand extends Command {
 
     public HelpCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
@@ -15,6 +16,6 @@ public class HelpCommand extends ServiceCommand {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Да, это определённо /help");
+                 "А, це /help");
     }
 }
