@@ -48,23 +48,13 @@ public class Bot extends TelegramLongPollingCommandBot {
         if (update.hasMessage()) {
             Message message = update.getMessage();
             String userName = message.getFrom().toString();
+            String chatId = message.getChatId().toString();
             if (message.hasText()) {
-                String chatId = message.getChatId().toString();
                 String answer = NonCommand.nonCommandMessageExecute(message, chatId);
-            }
-
-
-        }
-
-        if (update.hasMessage()) {
-            Message message = update.getMessage();
-            if (message.hasText()) {
-                SendMessage sendMessage = new SendMessage();
-                //NonCommand nonCommand = new NonCommand(message);
-
-                sendMessage.setChatId(message.getChatId().toString());
-                sendMessage.setText(message.getText() + " <- Я повторил!"); // Тут должна быть инфа о погоде
                 try {
+                    SendMessage sendMessage = new SendMessage();
+                    sendMessage.setChatId(chatId);
+                    sendMessage.setText(answer);
                     execute(sendMessage);
                 } catch (TelegramApiException e) {
                     e.printStackTrace();

@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public class WeatherNowCommand extends Command {
-    
+
     final Weather weather = Bot.openWeatherClient
             .currentWeather()
             .single()
