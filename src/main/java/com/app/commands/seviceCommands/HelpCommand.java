@@ -16,6 +16,6 @@ public class HelpCommand extends Command {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                 "А, це /help");
+                 "Это /help");
     }
 }

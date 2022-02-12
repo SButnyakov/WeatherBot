@@ -1,6 +1,7 @@
 package com.app.settings;
 
 public class Settings {
+    private boolean firstTimeHere;
     private Units.Temperature temperature;
     private Units.Pressure pressure;
     private String city;
@@ -8,6 +9,7 @@ public class Settings {
     private boolean language;
 
     public Settings() {
+        this.firstTimeHere = true;
         this.temperature = Units.Temperature.CELSIUS;
         this.pressure = Units.Pressure.MILLIMETERS;
         this.city = null;
@@ -33,6 +35,10 @@ public class Settings {
 
     public boolean getLanguage() {
         return this.language;
+    }
+
+    public boolean isFirstTimeHere() {
+        return this.firstTimeHere;
     }
 
     public void setTemperature(Units.Temperature temperature) {

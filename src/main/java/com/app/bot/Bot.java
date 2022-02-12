@@ -10,6 +10,7 @@ import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingC
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.HashMap;
@@ -18,7 +19,6 @@ import java.util.Map;
 public class Bot extends TelegramLongPollingCommandBot {
     private final String BOT_NAME;
     private final String BOT_TOKEN;
-
     public static final String API_TOKEN = "db082d6b19ebbda556c7e2e01d9b36b5";
     public static final OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API_TOKEN);
 
@@ -48,23 +48,13 @@ public class Bot extends TelegramLongPollingCommandBot {
         if (update.hasMessage()) {
             Message message = update.getMessage();
             String userName = message.getFrom().toString();
+            Long chatId = message.getChatId();
             if (message.hasText()) {
-                String chatId = message.getChatId().toString();
                 String answer = NonCommand.nonCommandMessageExecute(message, chatId);
-            }
-
-
-        }
-
-        if (update.hasMessage()) {
-            Message message = update.getMessage();
-            if (message.hasText()) {
-                SendMessage sendMessage = new SendMessage();
-                //NonCommand nonCommand = new NonCommand(message);
-
-                sendMessage.setChatId(message.getChatId().toString());
-                sendMessage.setText(message.getText() + " <- Я повторил!"); // Тут должна быть инфа о погоде
                 try {
+                    SendMessage sendMessage = new SendMessage();
+                    sendMessage.setChatId(chatId.toString());
+                    sendMessage.setText(answer);
                     execute(sendMessage);
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
