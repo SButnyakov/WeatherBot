@@ -6,6 +6,8 @@ import com.app.settings.Emojis;
 import com.app.settings.Settings;
 import com.github.prominence.openweathermap.api.enums.Language;
 import com.github.prominence.openweathermap.api.enums.UnitSystem;
+import com.github.prominence.openweathermap.api.model.weather.Rain;
+import com.github.prominence.openweathermap.api.model.weather.Snow;
 import com.github.prominence.openweathermap.api.model.weather.Weather;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
@@ -90,29 +92,26 @@ public class WeatherNowCommand extends Command {
     }
 
     private String getRainAndSnowLines(Weather weather) {
-        try {
-            double rain = weather.getRain().getOneHourLevel();
-            double snow = weather.getSnow().getOneHourLevel();
-            if (rain >= 0.1 && snow >= 0.1) {
-                // TODO: Доделать дождь + снег
-            } else if (rain >= 0.1) {
-                String rainLine = "";
-                rainLine += (rain < 4.0) ? Emojis.SMALL_RAIN_1_2 + " Небольшой дождь" : rainLine;
-                rainLine += (rain >= 4.0 && rain < 15.0) ? Emojis.SMALL_RAIN_1_2 + " Дождь" : rainLine;
-                rainLine += (rain >= 15.0 && rain < 50.0) ? Emojis.RAIN_1_2 + " Сильный дождь" : rainLine;
-                rainLine += (rain >= 50.0) ? Emojis.RAIN_1_2 + " Очень сильный дождь" : rainLine;
-                return rainLine + "\n";
-            } else if (snow >= 0.1) {
-                String snowLine = "";
-                snowLine += (snow < 4.0) ? Emojis.SNOW_1_2_3_4 + " Небольшой снег" : snowLine;
-                snowLine += (snow >= 4.0 && snow < 15.0) ? Emojis.SNOW_1_2_3_4 + " Снег" : snowLine;
-                snowLine += (snow >= 15.0 && snow < 50.0) ? Emojis.SNOW_1_2_3_4 + " Сильный снег" : snowLine;
-                snowLine += (snow >= 50.0) ? Emojis.SNOW_1_2_3_4 + " Очень сильный снег" : snowLine;
-                return snowLine + "\n";
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return Emojis.NO_PRECIPITATION + " Осадков не наблюдается!\n";
+        Rain rainTemp = weather.getRain();
+        Snow snowTemp = weather.getSnow();
+        if (rainTemp != null && snowTemp != null) {
+            // TODO: Доделать дождь + снег
+        } else if (rainTemp != null) {
+            double rain = rainTemp.getOneHourLevel();
+            String rainLine = "";
+            rainLine += (rain < 4.0) ? Emojis.SMALL_RAIN_1_2 + " Небольшой дождь" : rainLine;
+            rainLine += (rain >= 4.0 && rain < 15.0) ? Emojis.SMALL_RAIN_1_2 + " Дождь" : rainLine;
+            rainLine += (rain >= 15.0 && rain < 50.0) ? Emojis.RAIN_1_2 + " Сильный дождь" : rainLine;
+            rainLine += (rain >= 50.0) ? Emojis.RAIN_1_2 + " Очень сильный дождь" : rainLine;
+            return rainLine + "\n";
+        } else if (snowTemp != null) {
+            double snow = snowTemp.getOneHourLevel();
+            String snowLine = "";
+            snowLine += (snow < 4.0) ? Emojis.SNOW_1_2_3_4 + " Небольшой снег" : snowLine;
+            snowLine += (snow >= 4.0 && snow < 15.0) ? Emojis.SNOW_1_2_3_4 + " Снег" : snowLine;
+            snowLine += (snow >= 15.0 && snow < 50.0) ? Emojis.SNOW_1_2_3_4 + " Сильный снег" : snowLine;
+            snowLine += (snow >= 50.0) ? Emojis.SNOW_1_2_3_4 + " Очень сильный снег" : snowLine;
+            return snowLine + "\n";
         }
         return Emojis.NO_PRECIPITATION + " Без осадков!\n";
     }
