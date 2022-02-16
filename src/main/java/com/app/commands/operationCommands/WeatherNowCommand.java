@@ -31,11 +31,12 @@ public class WeatherNowCommand extends Command {
                 .retrieve()
                 .asJava();
         sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                makeWeatherNowString(weather));
+                makeWeatherNowString(weather, settings));
     }
 
-    private String makeWeatherNowString(Weather weather) {
+    private String makeWeatherNowString(Weather weather, Settings settings) {
         return WeatherMessageParser.getCityLine(weather) +
+                WeatherMessageParser.getCurrentDateAndTime(settings.getZonedDateTime()) +
                 "\n" +
                 WeatherMessageParser.getTemperatureNowLineInCelsius(weather) +
                 "\n" +

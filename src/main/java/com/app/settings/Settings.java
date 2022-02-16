@@ -1,20 +1,28 @@
 package com.app.settings;
 
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+
 public class Settings {
-    private boolean firstTimeHere;
+    private final boolean firstTimeHere;
     private Units.Temperature temperature;
     private Units.Pressure pressure;
     private String city;
     private boolean isWaitingForCity;
+    private boolean isWaitingForZonedDateTime;
     private boolean language;
+    private ZonedDateTime zonedDateTime;
 
     public Settings() {
-        this.firstTimeHere = true;
+        this.firstTimeHere = false;
         this.temperature = Units.Temperature.CELSIUS;
         this.pressure = Units.Pressure.MILLIMETERS;
         this.city = null;
         this.isWaitingForCity = true;
+        this.isWaitingForZonedDateTime = false;
         this.language = true;
+        this.zonedDateTime = ZonedDateTime.now(ZoneId.of("UTC"));
     }
 
     public Units.Temperature getTemperature() {
@@ -41,6 +49,14 @@ public class Settings {
         return this.firstTimeHere;
     }
 
+    public ZonedDateTime getZonedDateTime() {
+        return this.zonedDateTime;
+    }
+
+    public boolean isWaitingForZonedDateTime() {
+        return this.isWaitingForZonedDateTime;
+    }
+
     public void setTemperature(Units.Temperature temperature) {
         this.temperature = temperature;
     }
@@ -59,5 +75,14 @@ public class Settings {
 
     public void setLanguage(boolean language) {
         this.language = language;
+    }
+
+    public void setZonedDateTime(int hoursOffset, int minutesOffset) {
+        this.zonedDateTime = ZonedDateTime.now(ZoneId.ofOffset("UTC",
+                ZoneOffset.ofHoursMinutes(hoursOffset, minutesOffset)));
+    }
+
+    public void setWaitingForZonedDateTime(boolean isWaitingForZonedDateTime) {
+        this.isWaitingForZonedDateTime = isWaitingForZonedDateTime;
     }
 }
