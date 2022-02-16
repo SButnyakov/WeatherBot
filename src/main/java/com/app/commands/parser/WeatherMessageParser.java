@@ -7,6 +7,7 @@ import com.github.prominence.openweathermap.api.model.weather.Weather;
 import com.github.prominence.openweathermap.api.model.weather.Wind;
 
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 
 public abstract class WeatherMessageParser {
 
@@ -42,7 +43,7 @@ public abstract class WeatherMessageParser {
                 cloudiness;
         cloudiness = (cloud >= 60 && cloud < 80) ? Emojis.PARTLY_CLOUDY_3.hexCode + " Облачно с прояснениями" :
                 cloudiness;
-        cloudiness = (cloud <= 100) ? Emojis.CLOUDY + " Облачно/Пасмурно" : cloudiness;
+        cloudiness = (cloud <= 100) ? Emojis.CLOUDY.hexCode + " Облачно/Пасмурно" : cloudiness;
         return cloudiness + "\n";
     }
 
@@ -59,8 +60,8 @@ public abstract class WeatherMessageParser {
             rainAndSnowLine = (sumRainSnow >= 30) ?
                     Emojis.RAIN.hexCode + Emojis.SNOW_1_2_3_4.hexCode + " Сильный дождь со снегом" : rainAndSnowLine;
             return rainAndSnowLine + "\n";
-
-        } else if (rainTemp != null) {
+        }
+        if (rainTemp != null) {
             double rain = rainTemp.getOneHourLevel();
             String rainLine = "";
             rainLine = (rain < 4.0) ? Emojis.SMALL_RAIN_1_2.hexCode  + " Небольшой дождь" : rainLine;
@@ -68,7 +69,8 @@ public abstract class WeatherMessageParser {
             rainLine = (rain >= 15.0 && rain < 50.0) ? Emojis.RAIN_1_2.hexCode  + " Сильный дождь" : rainLine;
             rainLine = (rain >= 50.0) ? Emojis.RAIN_1_2.hexCode  + " Очень сильный дождь" : rainLine;
             return rainLine + "\n";
-        } else if (snowTemp != null) {
+        }
+        if (snowTemp != null) {
             double snow = snowTemp.getOneHourLevel();
             String snowLine = "";
             snowLine = (snow < 4.0) ? Emojis.SNOW_1_2_3_4.hexCode  + " Небольшой снег" : snowLine;
@@ -100,6 +102,17 @@ public abstract class WeatherMessageParser {
     }
 
     public static String getHumidityLine(Weather weather) {
-        return Emojis.HUMIDITY + " " + weather.getHumidity().getValue() + "%";
+        return Emojis.HUMIDITY.hexCode + " " + weather.getHumidity().getValue() + "%";
+    }
+
+    public static String getCurrentDateAndTime(ZonedDateTime zonedDateTime) {
+        return " (" + zonedDateTime.getDayOfMonth() +
+                "." +
+                zonedDateTime.getMonthValue() +
+                " " +
+                zonedDateTime.getHour() +
+                ":" +
+                zonedDateTime.getMinute() +
+                ")";
     }
 }
