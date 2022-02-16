@@ -23,7 +23,7 @@ public class StartCommand extends Command {
 
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
-        if (!Bot.settingsMap.containsKey(chat.getId()) || Bot.settingsMap.get(chat.getId()).isFirstTimeHere()) {
+        if (Bot.settingsMap.get(chat.getId()).getCity() == null) {
             firstStart(absSender, userName, chat);
         } else {
             sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, "Вот, что я умею:");

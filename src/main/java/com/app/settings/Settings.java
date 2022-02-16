@@ -5,7 +5,6 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
 public class Settings {
-    private final boolean firstTimeHere;
     private Units.Temperature temperature;
     private Units.Pressure pressure;
     private String city;
@@ -15,7 +14,6 @@ public class Settings {
     private ZonedDateTime zonedDateTime;
 
     public Settings() {
-        this.firstTimeHere = false;
         this.temperature = Units.Temperature.CELSIUS;
         this.pressure = Units.Pressure.MILLIMETERS;
         this.city = null;
@@ -43,10 +41,6 @@ public class Settings {
 
     public boolean getLanguage() {
         return this.language;
-    }
-
-    public boolean isFirstTimeHere() {
-        return this.firstTimeHere;
     }
 
     public ZonedDateTime getZonedDateTime() {
