@@ -50,7 +50,16 @@ public abstract class WeatherMessageParser {
         Rain rainTemp = weather.getRain();
         Snow snowTemp = weather.getSnow();
         if (rainTemp != null && snowTemp != null) {
-            // TODO: Доделать дождь + снег
+            double sumRainSnow = rainTemp.getOneHourLevel() + snowTemp.getOneHourLevel();
+            String rainAndSnowLine = "";
+            rainAndSnowLine = (sumRainSnow <= 6.0) ?
+                    Emojis.DRIP.hexCode + Emojis.LITTLE_SNOW.hexCode + " Небольшой дождь со снегом" : rainAndSnowLine;
+            rainAndSnowLine = (sumRainSnow >= 8 && sumRainSnow < 30) ?
+                    Emojis.RAIN.hexCode + Emojis.LITTLE_SNOW.hexCode + " Дождь со снегом" : rainAndSnowLine;
+            rainAndSnowLine = (sumRainSnow >= 30 && sumRainSnow < 99) ?
+                    Emojis.RAIN.hexCode + Emojis.SNOW_1_2_3_4.hexCode + " Сильный дождь со снегом" : rainAndSnowLine;
+            return rainAndSnowLine + "\n";
+
         } else if (rainTemp != null) {
             double rain = rainTemp.getOneHourLevel();
             String rainLine = "";
