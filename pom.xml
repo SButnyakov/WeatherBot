@@ -51,7 +51,7 @@
 
     <groupId>com.app</groupId>
     <artifactId>weather-bot</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
 
     <properties>
         <java.version>16</java.version>

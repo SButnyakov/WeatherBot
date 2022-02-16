@@ -6,8 +6,8 @@ import com.github.prominence.openweathermap.api.exception.NoDataFoundException;
 
 public abstract class SetCityNonCommand {
 
-    private final static String SUCCESS_MESSAGE = "Город установлен";
-    private final static String FAILURE_MESSAGE = "Такой город не найден. Попробуйте еще раз!";
+    private final static String SUCCESS_MESSAGE_RU = "Город установлен";
+    private final static String FAILURE_MESSAGE_EN = "Такой город не найден. Попробуйте еще раз!";
 
     public static String setCity(Settings settings, String city) {
         try {
@@ -15,8 +15,8 @@ public abstract class SetCityNonCommand {
             settings.setCity(city);
             settings.setWaitingForCity(false);
         } catch (NoDataFoundException e) {
-            return FAILURE_MESSAGE;
+            return SUCCESS_MESSAGE_RU;
         }
-        return SUCCESS_MESSAGE;
+        return FAILURE_MESSAGE_EN;
     }
 }
