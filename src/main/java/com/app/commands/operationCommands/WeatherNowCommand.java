@@ -49,5 +49,4 @@ public class WeatherNowCommand extends Command {
                 "\n" +
                 WeatherMessageParser.getHumidityLine(weather);
     }
-
 }
