@@ -1,5 +1,6 @@
 package com.app.commands;
 
+import com.app.settings.Settings;
 import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -10,6 +11,10 @@ public abstract class Command extends BotCommand {
 
     public Command(String commandIdentifier, String description) {
         super(commandIdentifier, description);
+    }
+
+    public Settings makeBackup(Settings previousSettings) {
+        return new Settings();
     }
 
     public void sendAnswer(AbsSender sender, Long chatId, String commandName, String userName, String text) {

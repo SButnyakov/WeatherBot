@@ -23,6 +23,17 @@ public class Settings {
         this.zonedDateTime = ZonedDateTime.now(ZoneId.of("UTC"));
     }
 
+    // Конструктор для бэкапов
+    public Settings(Settings settings) {
+        this.temperature = settings.temperature;
+        this.pressure = settings.pressure;
+        this.city = settings.city;
+        this.isWaitingForCity = settings.isWaitingForCity;
+        this.isWaitingForZonedDateTime = settings.isWaitingForZonedDateTime;
+        this.language = settings.language;
+        this.zonedDateTime = settings.zonedDateTime;
+    }
+
     public Units.Temperature getTemperature() {
         return this.temperature;
     }

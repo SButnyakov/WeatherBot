@@ -12,7 +12,9 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import java.util.ArrayList;
 
 public class StartCommand extends Command {
-    ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+    private static final String FIRST_START_MESSAGE_RU = "Привет! Напиши город, в котором ты хочешь узнать погоду" +
+            " или отправь мне свою геолокацию!";
+    private static final String NORMAL_MESSAGE_RU = "Вот, что я умею:";
 
     public StartCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
@@ -23,28 +25,15 @@ public class StartCommand extends Command {
 
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
-        if (Bot.settingsMap.get(chat.getId()).getCity() == null) {
+        if (!Bot.settingsMap.containsKey(chat.getId()) || Bot.settingsMap.get(chat.getId()).getCity() == null) {
             firstStart(absSender, userName, chat);
         } else {
-            sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, "Вот, что я умею:");
+            sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, NORMAL_MESSAGE_RU);
         }
     }
 
     private void firstStart(AbsSender absSender, String userName, Chat chat) {
         Bot.settingsMap.put(chat.getId(), new Settings());
-        sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                "Привет! Напиши город, в котором ты хочешь узнать погоду или отправь свою геолокацию!");
-        // Добавляем клавиатуру
-        /*
-        ArrayList<KeyboardRow> keyboard = new ArrayList<>();
-        KeyboardRow geolocationRow = new KeyboardRow();
-        keyboard.clear();
-        replyKeyboardMarkup.setSelective(false);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
-        geolocationRow.add("\ud83c\udff4\u200d\u2620\ufe0f" + " Геолокация");
-        keyboard.add(geolocationRow);
-        replyKeyboardMarkup.setKeyboard(keyboard);
-         */
+        sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, FIRST_START_MESSAGE_RU);
     }
 }
