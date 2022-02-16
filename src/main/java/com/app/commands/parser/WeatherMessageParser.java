@@ -56,7 +56,7 @@ public abstract class WeatherMessageParser {
                     Emojis.DRIPS.hexCode + Emojis.LITTLE_SNOW.hexCode + " Небольшой дождь со снегом" : rainAndSnowLine;
             rainAndSnowLine = (sumRainSnow >= 8 && sumRainSnow < 30) ?
                     Emojis.RAIN.hexCode + Emojis.LITTLE_SNOW.hexCode + " Дождь со снегом" : rainAndSnowLine;
-            rainAndSnowLine = (sumRainSnow >= 30 && sumRainSnow < 99) ?
+            rainAndSnowLine = (sumRainSnow >= 30) ?
                     Emojis.RAIN.hexCode + Emojis.SNOW_1_2_3_4.hexCode + " Сильный дождь со снегом" : rainAndSnowLine;
             return rainAndSnowLine + "\n";
 
