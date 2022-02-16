@@ -12,6 +12,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public class WeatherNowCommand extends Command {
+    private static final String FAILURE_MESSAGE_RU = "Привязанный город не обнаружен.";
 
     public WeatherNowCommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
@@ -22,6 +23,9 @@ public class WeatherNowCommand extends Command {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
         Settings settings = Bot.settingsMap.get(chat.getId());
+        if (settings.getCity() == null) {
+            sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, FAILURE_MESSAGE_RU);
+        }
         final Weather weather = Bot.openWeatherClient
                 .currentWeather()
                 .single()

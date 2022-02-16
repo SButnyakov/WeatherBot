@@ -17,10 +17,8 @@ public abstract class NonCommand {
             String city = message.getText();
             return SetCityNonCommand.setCity(settings, city);
         }
-        System.out.println("Около ифа");
         if (settings.isWaitingForZonedDateTime()) {
             String currentTime = message.getText();
-            System.out.println("Внутри ифа");
             return SetZonedDateTimeCommand.setZonedDateTime(settings, currentTime);
         }
         return DO_NOT_UNDERSTAND_MESSAGE_RU;

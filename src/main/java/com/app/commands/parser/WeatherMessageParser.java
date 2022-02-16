@@ -108,7 +108,7 @@ public abstract class WeatherMessageParser {
     public static String getCurrentDateAndTime(ZonedDateTime zonedDateTime) {
         return " (" + zonedDateTime.getDayOfMonth() +
                 "." +
-                zonedDateTime.getMonth().toString() +
+                zonedDateTime.getMonthValue() +
                 " " +
                 zonedDateTime.getHour() +
                 ":" +
