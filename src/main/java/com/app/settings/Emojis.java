@@ -22,7 +22,7 @@ public enum Emojis {
     SMALL_RAIN_1_2("\ud83c\udf26"),
     RAIN_1_2("\ud83c\udf26"),
     RAIN("\ud83c\udf27"),
-    DRIP("\ud83d\udca7"),
+    DRIPS("\ud83d\udca6"),
     LITTLE_SNOW("\u2744\ufe0f"),
     NO_PRECIPITATION("\ud83c\udf08"),
     WIND_1("\ud83c\udf43"),
