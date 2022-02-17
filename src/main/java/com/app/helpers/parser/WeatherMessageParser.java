@@ -1,4 +1,4 @@
-package com.app.commands.parser;
+package com.app.helpers.parser;
 
 import com.app.settings.Emojis;
 import com.github.prominence.openweathermap.api.model.weather.Rain;
@@ -105,6 +105,7 @@ public abstract class WeatherMessageParser {
         return Emojis.HUMIDITY.hexCode + " " + weather.getHumidity().getValue() + "%";
     }
 
+    /*
     public static String getCurrentDateAndTime(ZonedDateTime zonedDateTime) {
         return " (" + zonedDateTime.getDayOfMonth() +
                 "." +
@@ -115,4 +116,5 @@ public abstract class WeatherMessageParser {
                 zonedDateTime.getMinute() +
                 ")";
     }
+     */
 }

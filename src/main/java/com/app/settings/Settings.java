@@ -7,18 +7,16 @@ import java.time.ZonedDateTime;
 public class Settings {
     private Units.Temperature temperature;
     private Units.Pressure pressure;
-    private String city;
+    private Location location;
     private boolean isWaitingForCity;
-    private boolean isWaitingForZonedDateTime;
     private boolean language;
     private ZonedDateTime zonedDateTime;
 
     public Settings() {
         this.temperature = Units.Temperature.CELSIUS;
         this.pressure = Units.Pressure.MILLIMETERS;
-        this.city = null;
+        this.location = null;
         this.isWaitingForCity = true;
-        this.isWaitingForZonedDateTime = false;
         this.language = true;
         this.zonedDateTime = ZonedDateTime.now(ZoneId.of("UTC"));
     }
@@ -27,9 +25,8 @@ public class Settings {
     public Settings(Settings settings) {
         this.temperature = settings.temperature;
         this.pressure = settings.pressure;
-        this.city = settings.city;
+        this.location = settings.location;
         this.isWaitingForCity = settings.isWaitingForCity;
-        this.isWaitingForZonedDateTime = settings.isWaitingForZonedDateTime;
         this.language = settings.language;
         this.zonedDateTime = settings.zonedDateTime;
     }
@@ -42,8 +39,8 @@ public class Settings {
         return this.pressure;
     }
 
-    public String getCity() {
-        return this.city;
+    public Location getLocation() {
+        return this.location;
     }
 
     public boolean isWaitingForCity() {
@@ -58,10 +55,6 @@ public class Settings {
         return this.zonedDateTime;
     }
 
-    public boolean isWaitingForZonedDateTime() {
-        return this.isWaitingForZonedDateTime;
-    }
-
     public void setTemperature(Units.Temperature temperature) {
         this.temperature = temperature;
     }
@@ -70,8 +63,8 @@ public class Settings {
         this.pressure = pressure;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public void setWaitingForCity(boolean isWaitingForCity) {
@@ -82,12 +75,8 @@ public class Settings {
         this.language = language;
     }
 
-    public void setZonedDateTime(int hoursOffset, int minutesOffset) {
+    public void setZonedDateTime(int hoursOffset) {
         this.zonedDateTime = ZonedDateTime.now(ZoneId.ofOffset("UTC",
-                ZoneOffset.ofHoursMinutes(hoursOffset, minutesOffset)));
-    }
-
-    public void setWaitingForZonedDateTime(boolean isWaitingForZonedDateTime) {
-        this.isWaitingForZonedDateTime = isWaitingForZonedDateTime;
+                ZoneOffset.ofHours(hoursOffset)));
     }
 }

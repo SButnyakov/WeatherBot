@@ -14,7 +14,7 @@ public abstract class Command extends BotCommand {
     }
 
     public Settings makeBackup(Settings previousSettings) {
-        return new Settings();
+        return new Settings(previousSettings);
     }
 
     public void sendAnswer(AbsSender sender, Long chatId, String commandName, String userName, String text) {

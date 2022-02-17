@@ -17,10 +17,6 @@ public abstract class NonCommand {
             String city = message.getText();
             return SetCityNonCommand.setCity(settings, city);
         }
-        if (settings.isWaitingForZonedDateTime()) {
-            String currentTime = message.getText();
-            return SetZonedDateTimeCommand.setZonedDateTime(settings, currentTime);
-        }
         return DO_NOT_UNDERSTAND_MESSAGE_RU;
     }
 

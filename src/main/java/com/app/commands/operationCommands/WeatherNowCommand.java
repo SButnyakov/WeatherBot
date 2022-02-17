@@ -2,7 +2,7 @@ package com.app.commands.operationCommands;
 
 import com.app.bot.Bot;
 import com.app.commands.Command;
-import com.app.commands.parser.WeatherMessageParser;
+import com.app.helpers.parser.WeatherMessageParser;
 import com.app.settings.Settings;
 import com.github.prominence.openweathermap.api.enums.Language;
 import com.github.prominence.openweathermap.api.enums.UnitSystem;
@@ -26,13 +26,13 @@ public class WeatherNowCommand extends Command {
             sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, FAILURE_MESSAGE_RU);
         }
         Settings settings = Bot.settingsMap.get(chat.getId());
-        if (settings.getCity() == null) {
+        if (settings.getLocation() == null) {
             sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, FAILURE_MESSAGE_RU);
         }
         final Weather weather = Bot.openWeatherClient
                 .currentWeather()
                 .single()
-                .byCityName(settings.getCity())
+                .byCityName(settings.getLocation().getNameEn())
                 .language(Language.RUSSIAN)
                 .unitSystem(UnitSystem.METRIC)
                 .retrieve()
@@ -43,7 +43,7 @@ public class WeatherNowCommand extends Command {
 
     private String makeWeatherNowString(Weather weather, Settings settings) {
         return WeatherMessageParser.getCityLine(weather) +
-                WeatherMessageParser.getCurrentDateAndTime(settings.getZonedDateTime()) +
+                //WeatherMessageParser.getCurrentDateAndTime(settings.getZonedDateTime()) +
                 "\n" +
                 WeatherMessageParser.getTemperatureNowLineInCelsius(weather) +
                 "\n" +

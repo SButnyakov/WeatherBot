@@ -85,6 +85,11 @@
             <artifactId>telegrambotsextensions</artifactId>
             <version>${telegram.bots.extensions.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>4.5.6</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -14,10 +14,8 @@ public abstract class SetZonedDateTimeCommand {
             String[] time = currentTime.split(":");
             time[0] = time[0].equals("00") ? "24" : time[0];
             time[1] = time[1].equals("00") ? "24" : time[0];
-            int offsetHour =  Integer.parseInt(time[0]) - settings.getZonedDateTime().getHour();
-            int offsetMinute = Integer.parseInt(time[1]) - settings.getZonedDateTime().getMinute();
-            settings.setZonedDateTime(offsetHour, offsetMinute);
-            settings.setWaitingForZonedDateTime(false);
+            int offsetHour = settings.getZonedDateTime().getHour() - Integer.parseInt(time[0]);
+            settings.setZonedDateTime(offsetHour);
         } catch (NumberFormatException | DateTimeException e) {
             return FAILURE_MESSAGE_RU;
         }
