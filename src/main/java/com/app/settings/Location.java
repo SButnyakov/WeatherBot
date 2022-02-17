@@ -34,17 +34,4 @@ public class Location {
     public float getLon() {
         return lon;
     }
-
-    public String toString() {
-        return this.country +
-                "\n" +
-                this.nameRu +
-                "\n" +
-                this.nameEn +
-                "\n" +
-                this.lat +
-                "\n" +
-                this.lon +
-                "\n";
-    }
 }
