@@ -22,6 +22,9 @@ public class WeatherNowCommand extends Command {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
+        if (!Bot.settingsMap.containsKey(chat.getId())) {
+            sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, FAILURE_MESSAGE_RU);
+        }
         Settings settings = Bot.settingsMap.get(chat.getId());
         if (settings.getCity() == null) {
             sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, FAILURE_MESSAGE_RU);
