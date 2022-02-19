@@ -1,7 +1,6 @@
 package com.app.commands;
 
 import com.app.settings.Settings;
-import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.bots.AbsSender;

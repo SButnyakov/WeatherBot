@@ -7,7 +7,6 @@ import com.app.commands.operationCommands.WeatherNowCommand;
 import com.app.commands.seviceCommands.HelpCommand;
 import com.app.commands.seviceCommands.StartCommand;
 import com.app.settings.Settings;
-import com.github.prominence.openweathermap.api.OpenWeatherMapClient;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -21,7 +20,6 @@ import java.util.Map;
 public class Bot extends TelegramLongPollingCommandBot {
     private final String BOT_NAME;
     private final String BOT_TOKEN;
-    public static final OpenWeatherMapClient openWeatherClient = new OpenWeatherMapClient(API.API_TOKEN);
 
     public static final Map<Long, Settings> settingsMap = new HashMap<>();
 

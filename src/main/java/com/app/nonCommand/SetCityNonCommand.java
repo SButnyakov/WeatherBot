@@ -1,12 +1,7 @@
 package com.app.nonCommand;
 
-import com.app.bot.Bot;
 import com.app.helpers.api.API;
-import com.app.settings.Location;
 import com.app.settings.Settings;
-import com.github.prominence.openweathermap.api.exception.NoDataFoundException;
-
-import java.io.IOException;
 
 public abstract class SetCityNonCommand {
 
