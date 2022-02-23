@@ -22,10 +22,9 @@ public class StartCommand extends Command {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
-
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
-        if (!Bot.settingsMap.containsKey(chat.getId()) || Bot.settingsMap.get(chat.getId()).getCity() == null) {
+        if (!Bot.settingsMap.containsKey(chat.getId()) || Bot.settingsMap.get(chat.getId()).getLocation() == null) {
             firstStart(absSender, userName, chat);
         } else {
             sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, NORMAL_MESSAGE_RU);

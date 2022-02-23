@@ -60,7 +60,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <telegram.bot.api.version>5.7.0</telegram.bot.api.version>
         <telegram.bots.version>5.7.1</telegram.bots.version>
-        <openweathermap.api.version>2.2.0</openweathermap.api.version>
         <telegram.bots.extensions.version>5.7.1</telegram.bots.extensions.version>
     </properties>
 
@@ -76,14 +75,14 @@
             <version>${telegram.bots.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.prominence</groupId>
-            <artifactId>openweathermap-api</artifactId>
-            <version>${openweathermap.api.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambotsextensions</artifactId>
             <version>${telegram.bots.extensions.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>4.5.6</version>
         </dependency>
     </dependencies>
 

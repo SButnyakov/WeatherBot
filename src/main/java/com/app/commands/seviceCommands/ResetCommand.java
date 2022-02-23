@@ -19,7 +19,7 @@ public class ResetCommand extends Command {
         String userName = (user.getUserName() != null) ? user.getUserName() :
                 String.format("%s %s", user.getLastName(), user.getFirstName());
         String answer = "";
-        if (Bot.settingsMap.containsKey(chat.getId()) && Bot.settingsMap.get(chat.getId()).getCity() != null) {
+        if (Bot.settingsMap.containsKey(chat.getId()) && Bot.settingsMap.get(chat.getId()).getLocation() != null) {
             Bot.settingsMap.remove(chat.getId());
             answer = SUCCESS_MESSAGE_RU;
         } else {

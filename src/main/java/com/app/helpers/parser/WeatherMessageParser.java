@@ -1,18 +1,18 @@
-package com.app.commands.parser;
+package com.app.helpers.parser;
 
+import com.app.helpers.api.weather.Weather;
+import com.app.helpers.api.weather.Rain;
+import com.app.helpers.api.weather.Snow;
+import com.app.helpers.api.weather.Wind;
 import com.app.settings.Emojis;
-import com.github.prominence.openweathermap.api.model.weather.Rain;
-import com.github.prominence.openweathermap.api.model.weather.Snow;
-import com.github.prominence.openweathermap.api.model.weather.Weather;
-import com.github.prominence.openweathermap.api.model.weather.Wind;
+import com.app.settings.Location;
 
 import java.time.LocalTime;
-import java.time.ZonedDateTime;
 
 public abstract class WeatherMessageParser {
 
     public static String getTemperatureNowLineInCelsius(Weather weather) {
-        byte temp = (byte) Math.round(weather.getTemperature().getValue());
+        int temp = Math.round(weather.getTemperature().getValue());
         String temperature = "";
         temperature = (temp >= 30) ? Emojis.THIRTY_AND_HIGHER.hexCode  + " " + temp : temperature;
         temperature = (temp >= 20 && temp < 30) ? Emojis.TWENTY_AND_TWENTY_NINE.hexCode  + " " + temp : temperature;
@@ -24,8 +24,8 @@ public abstract class WeatherMessageParser {
         return temperature + " °C\n";
     }
 
-    public static String getCityLine(Weather weather) {
-        String city = weather.getLocation().getName();
+    public static String getCityLine(Weather weather, Location location) {
+        String city = location.getNameRu();
         byte hour = (byte) LocalTime.now().getHour();
         city = (hour >= 7 && hour <= 12) ? Emojis.MORNING_CITY.hexCode  + " " + city : city;
         city = (hour >= 13 && hour <= 18) ? Emojis.DAY_CITY.hexCode  + " " + city : city;
@@ -35,7 +35,7 @@ public abstract class WeatherMessageParser {
     }
 
     public static String getCloudinessLine(Weather weather) {
-        byte cloud = weather.getClouds().getValue();
+        int cloud = weather.getClouds().getValue();
         String cloudiness = "";
         cloudiness = (cloud < 20) ? Emojis.CLEAR.hexCode  + " Ясно" : cloudiness;
         cloudiness = (cloud >= 20 && cloud < 40) ? Emojis.PARTLY_CLOUDY_1.hexCode  + " Малооблачно" : cloudiness;
@@ -51,7 +51,7 @@ public abstract class WeatherMessageParser {
         Rain rainTemp = weather.getRain();
         Snow snowTemp = weather.getSnow();
         if (rainTemp != null && snowTemp != null) {
-            double sumRainSnow = rainTemp.getOneHourLevel() + snowTemp.getOneHourLevel();
+            double sumRainSnow = rainTemp.getValue1h() + snowTemp.getValue1h();
             String rainAndSnowLine = "";
             rainAndSnowLine = (sumRainSnow <= 6.0) ?
                     Emojis.DRIPS.hexCode + Emojis.LITTLE_SNOW.hexCode + " Небольшой дождь со снегом" : rainAndSnowLine;
@@ -62,7 +62,7 @@ public abstract class WeatherMessageParser {
             return rainAndSnowLine + "\n";
         }
         if (rainTemp != null) {
-            double rain = rainTemp.getOneHourLevel();
+            double rain = rainTemp.getValue1h();
             String rainLine = "";
             rainLine = (rain < 4.0) ? Emojis.SMALL_RAIN_1_2.hexCode  + " Небольшой дождь" : rainLine;
             rainLine = (rain >= 4.0 && rain < 15.0) ? Emojis.SMALL_RAIN_1_2.hexCode  + " Дождь" : rainLine;
@@ -71,7 +71,7 @@ public abstract class WeatherMessageParser {
             return rainLine + "\n";
         }
         if (snowTemp != null) {
-            double snow = snowTemp.getOneHourLevel();
+            double snow = snowTemp.getValue1h();
             String snowLine = "";
             snowLine = (snow < 4.0) ? Emojis.SNOW_1_2_3_4.hexCode  + " Небольшой снег" : snowLine;
             snowLine = (snow >= 4.0 && snow < 15.0) ? Emojis.SNOW_1_2_3_4.hexCode  + " Снег" : snowLine;
@@ -85,7 +85,7 @@ public abstract class WeatherMessageParser {
     public static String getWindLine(Weather weather) {
         Wind windTemp = weather.getWind();
         if (windTemp != null) {
-            byte wind = (byte) Math.round(windTemp.getSpeed());
+            byte wind = (byte) Math.round(windTemp.getValue());
             String windLine = "";
             windLine = (wind <= 5) ? Emojis.WIND_1.hexCode  + " Слабый ветер" : windLine;
             windLine = (wind > 5 && wind <= 14) ? Emojis.WIND_2.hexCode  + " Умеренный ветер" : windLine;
@@ -98,21 +98,10 @@ public abstract class WeatherMessageParser {
     }
 
     public static String getHPaPressureLine(Weather weather) {
-        return Emojis.PRESSURE.hexCode  + " " + Math.round(weather.getAtmosphericPressure().getValue()) + " hPa\n";
+        return Emojis.PRESSURE.hexCode  + " " + Math.round(weather.getPressure().getValue()) + " hPa\n";
     }
 
     public static String getHumidityLine(Weather weather) {
         return Emojis.HUMIDITY.hexCode + " " + weather.getHumidity().getValue() + "%";
-    }
-
-    public static String getCurrentDateAndTime(ZonedDateTime zonedDateTime) {
-        return " (" + zonedDateTime.getDayOfMonth() +
-                "." +
-                zonedDateTime.getMonthValue() +
-                " " +
-                zonedDateTime.getHour() +
-                ":" +
-                zonedDateTime.getMinute() +
-                ")";
     }
 }
