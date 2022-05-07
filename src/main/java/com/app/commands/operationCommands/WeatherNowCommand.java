@@ -11,6 +11,8 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
+import java.time.LocalTime;
+
 public class WeatherNowCommand extends Command {
     private static final String FAILURE_MESSAGE_RU = "Привязанный город не обнаружен.";
     private static final String ERROR_MESSAGE_RU = "Что-то на нашей стороне пошло не так, " +
@@ -36,16 +38,17 @@ public class WeatherNowCommand extends Command {
         final Location location = Bot.settingsMap.get(chat.getId()).getLocation();
         try {
             Weather weather = API.makeCurrentWeatherRequest(location.getLat(), location.getLon());
+            // TODO: ...
             sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName,
-                    makeWeatherNowString(weather, location));
+                    makeWeatherNowString("2022-05-07 21:00:00", weather, location));
         } catch (Exception e) {
             e.printStackTrace();
             sendAnswer(absSender, chat.getId(), this.getCommandIdentifier(), userName, ERROR_MESSAGE_RU);
         }
     }
 
-    private String makeWeatherNowString(Weather weather, Location location) {
-        return WeatherMessageParser.getCityLine(weather, location) +
+    private String makeWeatherNowString(String time, Weather weather, Location location) {
+        return WeatherMessageParser.getCityLine(time, weather, location) +
                 "\n" +
                 WeatherMessageParser.getTemperatureNowLineInCelsius(weather) +
                 "\n" +

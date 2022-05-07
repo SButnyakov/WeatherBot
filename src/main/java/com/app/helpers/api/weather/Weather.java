@@ -9,10 +9,9 @@ public class Weather {
     private final Temperature temperature;
     private final Visibility visibility;
     private final Wind wind;
-    private final Description description;
 
     public Weather(Clouds clouds, Humidity humidity, Pressure pressure, Rain rain, Snow snow,
-                   Temperature temperature, Visibility visibility, Wind wind, Description description) {
+                   Temperature temperature, Visibility visibility, Wind wind) {
         this.clouds = clouds;
         this.humidity = humidity;
         this.pressure = pressure;
@@ -21,7 +20,6 @@ public class Weather {
         this.temperature = temperature;
         this.visibility = visibility;
         this.wind = wind;
-        this.description = description;
     }
 
     public Clouds getClouds() {
@@ -54,9 +52,5 @@ public class Weather {
 
     public Wind getWind() {
         return this.wind;
-    }
-
-    public Description getDescription() {
-        return this.description;
     }
 }

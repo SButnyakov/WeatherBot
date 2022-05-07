@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 
 public abstract class NonCommand {
     private final static String DO_NOT_UNDERSTAND_MESSAGE_RU = "Простите, я вас не понимаю";
-    private final static String NOT_A_TEXT_MESSAGE_RU = "Простите, мой искуственный мозг не в состоянии это переварить";
+    private final static String NOT_A_TEXT_MESSAGE_RU = "ЧЕЛ Я В АХУЕ С ТЕБЯ!!!";
 
     public static String nonCommandMessageExecute(Message message, Long chatId) {
         Settings settings = Bot.settingsMap.get(chatId);
