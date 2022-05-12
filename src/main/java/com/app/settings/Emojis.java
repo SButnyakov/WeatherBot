@@ -31,7 +31,12 @@ public enum Emojis {
     WIND_4("\ud83c\udf2a"),
     PRESSURE("\ud83c\udf21");
 
-    public final String hexCode;
+    @Override
+    public String toString() {
+        return hexCode;
+    }
+
+    private final String hexCode;
 
     private Emojis(String hexCode) {
         this.hexCode = hexCode;

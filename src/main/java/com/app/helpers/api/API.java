@@ -8,28 +8,24 @@ import org.json.JSONObject;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class API {
     public static final String API_TOKEN = "db082d6b19ebbda556c7e2e01d9b36b5";
     private static final String urlGeoDirect = "http://api.openweathermap.org/geo/1.0/direct?q=";
     private static final String urlCurrentWeather = "http://api.openweathermap.org/data/2.5/weather?lat=";
 
-    /*
-
-    Пока не добавим клавиатуру будем брать первый город,
-    потом предлагать полученный список из 5
-
-    public static JSONObject makeCitiesRequest() {
-        String getCities = Request.Get(urlGeo)
-                .execute().returnContent().toString();
-        JSONArray jsonCities = new JSONArray(getCities);
-    }
-
-     */
+    private static final String urlForecast = "http://api.openweathermap.org/data/2.5/forecast?lat=";
 
     public static Weather makeCurrentWeatherRequest(float lat, float lon) throws IOException {
         JSONObject json = readJsonFromUrl(makeUrlForCurrentWeatherRequest(lat, lon));
         return getCurrentWeatherFromJSON(json);
+    }
+
+    public static Forecast makeForecastRequest(float lat, float lon) throws IOException {
+        JSONObject json = readJsonFromUrl(makeUrlForForecastRequest(lat, lon));
+        return getForecastFromJSON(json);
     }
 
     public static Location makeLocationRequest(String location) throws Exception {
@@ -75,8 +71,17 @@ public abstract class API {
                         json.getJSONObject("main").getFloat("temp_max")),
                 new Visibility(json.getInt("visibility")),
                 new Wind(json.getJSONObject("wind").getFloat("speed"),
-                        json.getJSONObject("wind").getInt("deg")),
-                new Description(json.getJSONArray("weather").getJSONObject(0).getString("description")));
+                        json.getJSONObject("wind").getInt("deg")));
+    }
+
+    private static Forecast getForecastFromJSON(JSONObject json) {
+        Forecast forecast = new Forecast();
+        for (int i = 0; i < 39; ++i) {
+            String time = json.getJSONArray("list").getJSONObject(i).getString("dt_txt");
+            Weather weather = getCurrentWeatherFromJSON(json.getJSONArray("list").getJSONObject(i));
+            forecast.add(time, weather);
+        }
+        return forecast;
     }
 
     private static Location getLocationFromJSON(JSONObject json) {
@@ -91,8 +96,12 @@ public abstract class API {
         return urlGeoDirect + location + "&limit=" + limit + "&appid=" + API_TOKEN;
     }
 
-    public static String makeUrlForCurrentWeatherRequest(float lat, float lon) {
+    private static String makeUrlForCurrentWeatherRequest(float lat, float lon) {
         return urlCurrentWeather + lat + "&lon=" + lon + "&units=metric&appid=" + API_TOKEN + "&lang=ru";
+    }
+
+    private static String makeUrlForForecastRequest(float lat, float lon) {
+        return urlForecast + lat + "&lon=" + lon + "&units=metric&appid=" + API_TOKEN + "&lang=ru";
     }
 
     private static JSONObject readJsonFromUrl(String url) throws IOException {

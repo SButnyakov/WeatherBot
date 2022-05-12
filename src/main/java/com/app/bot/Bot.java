@@ -1,5 +1,6 @@
 package com.app.bot;
 
+import com.app.commands.operationCommands.WeatherTodayCommand;
 import com.app.commands.seviceCommands.ResetCommand;
 import com.app.helpers.api.API;
 import com.app.nonCommand.NonCommand;
@@ -31,6 +32,7 @@ public class Bot extends TelegramLongPollingCommandBot {
         register(new HelpCommand("help", "Помощь"));
         register(new WeatherNowCommand("now", "Погода сейчас"));
         register(new ResetCommand("reset", "Сбросить настройки"));
+        register(new WeatherTodayCommand("today", "Погода сегодня"));
     }
 
     @Override
