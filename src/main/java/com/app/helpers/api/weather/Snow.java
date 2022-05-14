@@ -1,5 +1,8 @@
 package com.app.helpers.api.weather;
 
+import lombok.Data;
+
+@Data
 public class Snow {
     private final float value1h;
     private final float value3h;
@@ -9,11 +12,4 @@ public class Snow {
         this.value3h = value3h;
     }
 
-    public float getValue1h() {
-        return this.value1h;
-    }
-
-    public float getValue3h() {
-        return this.value3h;
-    }
 }

@@ -1,5 +1,8 @@
 package com.app.helpers.api.weather;
 
+import lombok.Data;
+
+@Data
 public class Weather {
     private final Clouds clouds;
     private final Humidity humidity;
@@ -20,37 +23,5 @@ public class Weather {
         this.temperature = temperature;
         this.visibility = visibility;
         this.wind = wind;
-    }
-
-    public Clouds getClouds() {
-        return this.clouds;
-    }
-
-    public Humidity getHumidity() {
-        return this.humidity;
-    }
-
-    public Pressure getPressure() {
-        return this.pressure;
-    }
-
-    public Rain getRain() {
-        return this.rain;
-    }
-
-    public Snow getSnow() {
-        return this.snow;
-    }
-
-    public Temperature getTemperature() {
-        return this.temperature;
-    }
-
-    public Visibility getVisibility() {
-        return this.visibility;
-    }
-
-    public Wind getWind() {
-        return this.wind;
     }
 }

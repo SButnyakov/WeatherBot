@@ -2,6 +2,9 @@ package com.app.settings;
 
 import com.app.helpers.api.weather.Timezone;
 
+import lombok.Data;
+
+@Data
 public class Location {
     private final String country;
     private final String nameRu;
@@ -17,33 +20,5 @@ public class Location {
         this.lat = lat;
         this.lon = lon;
         this.timezone = null;
-    }
-
-    public String getCountry() {
-        return this.country;
-    }
-
-    public String getNameRu() {
-        return this.nameRu;
-    }
-
-    public String getNameEn() {
-        return this.nameEn;
-    }
-
-    public float getLat() {
-        return this.lat;
-    }
-
-    public float getLon() {
-        return this.lon;
-    }
-
-    public Timezone getTimezone() {
-        return this.timezone;
-    }
-
-    public void setTimezone(Timezone timezone) {
-        this.timezone = timezone;
     }
 }

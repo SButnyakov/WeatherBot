@@ -1,5 +1,8 @@
 package com.app.helpers.api.weather;
 
+import lombok.Data;
+
+@Data
 public class Temperature {
     private final float value;
     private final float feelsLike;
@@ -11,21 +14,5 @@ public class Temperature {
         this.feelsLike = feelsLike;
         this.min = min;
         this.max = max;
-    }
-
-    public float getFeelsLike() {
-        return this.feelsLike;
-    }
-
-    public float getMin() {
-        return this.min;
-    }
-
-    public float getMax() {
-        return this.max;
-    }
-
-    public float getValue() {
-        return this.value;
     }
 }
